@@ -1,96 +1,120 @@
 import { useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
-import ListGroup from 'react-bootstrap/ListGroup';
-import Image from 'react-bootstrap/Image';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Card from 'react-bootstrap/Card';
+import Carousel from 'react-bootstrap/Carousel';
 import http from '../lib/http';
-
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
-import { Link } from "react-router-dom";
+import { useSearchParams, Link, useLocation } from "react-router-dom";
+import ListGroup from 'react-bootstrap/ListGroup';
 
-const Concerts = () => {
+const Concerts = (props) => {
   const [concerts, setConcerts] = useState([]);
+  const [searchCity, setSearchCity] = useState("");
+  const location = useLocation();
+
+  console.log('>>>> props', props);
+  console.log('>>>> location', location);
+
+  const [searchParams, setsearchParams] = useSearchParams();
+  const [city, setCity] = useState(searchParams.get('city'));
+
+  console.log('>>>> city', city);
+  // new changes for query
+  const handleChange = event => {
+    const newQuery = event.target.value;
+    setCity(newQuery);
+    // setsearchParams({
+    //   city: newQuery,
+    //   page: 0
+    // })
+  };
 
   useEffect(() => {
     async function fetchData() {
       const { data } = await http.get('/concerts');
-    // const { data } = await http.get('/concerts?city=${city}');
       setConcerts(data.data.concerts);
     }
     fetchData();
+
+    const str = location.search.split("=");
+    setCity(decodeURIComponent(str[1]));
   }, []);
 
-// const Concert = ({ concert }) => {
-//     return (
-//       <div>
-//         <h2>{concert.name}</h2>
-//         <p>{concert._id}</p>
-//         <img src={concert.images[0].url} alt={concert.name} />
-//       </div>
-//     );
-// };
+  // const searchConcerts = async (e) => {
+  //   const searchValue = e.target.value;
+  //   setSearchCity(searchValue);
+  //   const { data } = await http.get(`/concerts?city=${searchValue}`);
+  //   setConcerts(data.data.concerts);
+  // };
 
-// const searchConcert = async (e) => {
-//     const searchValue = e.target.value;
-//     const { data } = await http.get(`/cities?search=${searchValue}`);
-//     // The subset of posts is added to the state that will trigger a re-render of the UI
-//     setConcerts(data.data.cities); 
-//   };
-  
-//   return (
-//     <>
-//       <Container className="my-5" style={{ maxWidth: '800px' }}>
-//         <h2 className="text-center">Know Your City</h2>
-//         Search a city to get details
-//         <Form>
-//           <FormControl
-//             type="search"
-//             placeholder="Search"
-//             className="me-5"
-//             aria-label="Search"
-//             onChange={searchConcert} // onChange will trigger "search city"
-//           />
-//         </Form>
-//       </Container>
-//       <Container style={{ maxWidth: '800px' }}>
-//         <ListGroup variant="flush" as="ol">
-//           {
-//             concerts.map((city) => {
-//               return (
-//                 <ListGroup.Item key={city._id}> 
-//                   <div className="fw-bold h3">
-//                     <Link to={`/getData/${city.city}`} style={{ textDecoration: 'none' }}>{city.city}</Link>
-//                   </div>
-//                   {/* <div><span className="fw-bold h3">{city.city}</span></div> */}
-//                 </ListGroup.Item>
-//               );
-//             })
-//           }
-//         </ListGroup>
-//       </Container>
-//     </>
-//   );
-// };
+  const renderConcertCard = (concert) => {
+    return concert.events.map((event, index) => (
+      <Col key={`${concert._id}-${index}`}>
+        <Card>
+          <Link to={`${event.url}`}>
+            <Carousel
+              interval={null}
+              style={{ height: "250px", width: "100%" }}
+            >
+              {event.images.map((image, index) => (
+                <Carousel.Item key={index}>
+                  <img
+                    src={image}
+                    alt={`Slide ${index}`}
+                    style={{ height: "250px", width: "100%" }}
+                  />
+                </Carousel.Item>
+              ))}
+            </Carousel>
+          </Link>
+          <Card.Body>
+            <Card.Title>{event.name}</Card.Title>
+            <Card.Subtitle className="mb-2 text-muted">
+              {concert.city}
+            </Card.Subtitle>
+            {/* <Card.Text>{event.id}</Card.Text> */}
+          </Card.Body>
+        </Card>
+      </Col>
+    ))
+  }
 
 
 
   return (
-    <Container className="my-5" style={{ maxWidth: '800px' }}>
-      <h2 className="text-center">Upcoming Concerts</h2>
-      <ListGroup variant="flush" as="ol">
-        {
-          concerts.map((concert) => {
-            return (
-              <ListGroup.Item key={concert._id}>
-                {/* <div className="fw-bold h3">{concert.artist}</div> */}
-                <div><span className="fw-bold h5">City:</span> {concert.city}</div>
-                {/* <div><span className="fw-bold h5">Events:</span> {concert.events}</div> */}
-              </ListGroup.Item>
-            );
-          })
-        }
-      </ListGroup>
-    </Container>
+    <>
+      <Container className="my-5" style={{ maxWidth: '800px' }}>
+        <h2 className="text-center">Upcoming Concerts</h2>
+        <Form>
+          {/* <input // new changes
+            value={city}
+            placeholder="Search..."
+            className="me-5"
+            aria-label="Search"
+            onChange={handleChange}
+          /> */}
+          <FormControl
+            value={city}
+            placeholder="Search..."
+            className="me-5"
+            aria-label="Search"
+            onChange={handleChange}
+          />
+        </Form>
+      </Container>
+      <Container>
+        <Row xs={1} md={5} className="g-4">
+          {city ? concerts.map(concert => {
+            return concert.city.toLowerCase().includes(city.toLowerCase()) && renderConcertCard(concert)
+          }) : concerts.map(concert => {
+            return renderConcertCard(concert)
+          })}
+        </Row>
+      </Container>
+    </>
   );
 };
 

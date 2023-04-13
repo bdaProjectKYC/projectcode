@@ -24,7 +24,6 @@ const EventSchema = new Schema({
     },
     events: {
     type: [EventSchema],
-    // default: [],
     },
     });
 

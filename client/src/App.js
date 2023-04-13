@@ -21,8 +21,8 @@ function App() {
         </Container>
       </Navbar>
       <Routes>
+        <Route path="/concerts" element={<Concerts />} /> // Adding concerts
         <Route path="/" element={<Home />} />
-        <Route path="/concerts" element={<Concerts />} /> // Add this line
       </Routes>
     </>
   );
