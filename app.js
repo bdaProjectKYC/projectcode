@@ -19,7 +19,7 @@ mongoose
 
 var indexRouter = require("./routes/index");
 var citiesRouter = require("./routes/cities");
-
+var weatherRouter = require("./routes/weather");
 var app = express();
 
 // view engine setup
@@ -35,6 +35,7 @@ app.use(cors());
 
 app.use("/", indexRouter);
 app.use("/cities", citiesRouter);
+app.use("/weather", weatherRouter);
 
 // // Return the client
 // app.get('/cities*', (_, res) => {
