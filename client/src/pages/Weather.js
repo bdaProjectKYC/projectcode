@@ -16,7 +16,7 @@ const Weather = () => {
       console.log("wait2");
       console.log(city);
       const { data } = await http.get(`/weather/${city}`);
-      setWeather(data.data.weather);
+      setWeather(data.data.weather.forecast);
       console.log("wait3");
     }
     fetchData();
