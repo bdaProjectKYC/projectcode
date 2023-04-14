@@ -19,7 +19,12 @@ mongoose
 
 var indexRouter = require("./routes/index");
 var citiesRouter = require("./routes/cities");
+<<<<<<< HEAD
 var weatherRouter = require("./routes/weather");
+=======
+var concertsRouter = require("./routes/concerts");
+
+>>>>>>> main
 var app = express();
 
 // view engine setup
@@ -35,7 +40,11 @@ app.use(cors());
 
 app.use("/", indexRouter);
 app.use("/cities", citiesRouter);
+<<<<<<< HEAD
 app.use("/weather", weatherRouter);
+=======
+app.use("/concerts", concertsRouter);
+>>>>>>> main
 
 // // Return the client
 // app.get('/cities*', (_, res) => {
