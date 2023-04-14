@@ -21,7 +21,7 @@ function App() {
       </Navbar>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/weather" element={<Weather />} />
+        <Route path="/weather/:city" element={<Weather />} />
       </Routes>
     </>
   );
