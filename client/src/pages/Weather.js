@@ -5,19 +5,14 @@ import http from '../lib/http';
 import { useParams } from 'react-router-dom';
 
 
-console.log("inside front city");
+console.log("inside front weather");
 const Weather = () => {
-  console.log("wait0");
   const [weather, setWeather] = useState([]);
   const { city } = useParams();
-  console.log("wait1");
   useEffect(() => {
     async function fetchData() {
-      console.log("wait2");
-      console.log(city);
       const { data } = await http.get(`/weather/${city}`);
       setWeather(data.data.weather.forecast);
-      console.log("wait3");
     }
     fetchData();
   }, []);
