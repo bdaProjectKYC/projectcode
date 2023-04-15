@@ -1,19 +1,13 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Routes, Route } from 'react-router-dom';
-import Home from './pages/home';
-
-
-import Weather from './pages/Weather';
-
-import Concerts from './pages/concerts';
-
-import News from './pages/news'
-
-
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/home";
+import Weather from "./pages/Weather";
+import Concerts from "./pages/concerts";
+import News from "./pages/news";
+import Dashboard from "./pages/Dashboard";
 // Import the Navbar, Nav and Container components from Bootstrap for a nice layout
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
-import Container from 'react-bootstrap/Container';
+import Navbar from "react-bootstrap/Navbar";
+import Container from "react-bootstrap/Container";
 
 function App() {
   return (
@@ -22,20 +16,14 @@ function App() {
         <Container>
           <Navbar.Brand href="/">Know Your City</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          {/* <Nav className="me-auto">
-            <Nav.Link href="/posts/new">New</Nav.Link>
-          </Nav> */}
         </Container>
       </Navbar>
       <Routes>
-        
         <Route path="/" element={<Home />} />
-
         <Route path="/weather/:city" element={<Weather />} />
-        <Route path="/concerts/:city" element={<Concerts />} /> // Adding concerts page path
-
+        <Route path="/concerts/:city" element={<Concerts />} />
         <Route path="/news/:city" element={<News />} />
-
+        <Route path="/dashboard/:city" element={<Dashboard />} />
       </Routes>
     </>
   );
