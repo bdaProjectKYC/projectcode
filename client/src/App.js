@@ -4,7 +4,7 @@ import Home from './pages/home';
 
 import Weather from './pages/Weather';
 
-import Concerts from './pages/concerts';
+import Concerts from './pages/concerts2';
 
 // Import the Navbar, Nav and Container components from Bootstrap for a nice layout
 import Navbar from 'react-bootstrap/Navbar';
@@ -24,9 +24,10 @@ function App() {
         </Container>
       </Navbar>
       <Routes>
-        <Route path="/concerts" element={<Concerts />} /> // Adding concerts page path
+        
         <Route path="/" element={<Home />} />
         <Route path="/weather/:city" element={<Weather />} />
+        <Route path="/concerts/:city" element={<Concerts />} /> // Adding concerts page path
       </Routes>
     </>
   );
