@@ -49,7 +49,7 @@ const Home = () => {
               return (
                 <ListGroup.Item key={city._id}> 
                   <div className="fw-bold h3">
-                    <Link to={`/city/${city.city}`} style={{ textDecoration: 'none' }}>{city.city}</Link>
+                    <Link to={`/getData/${city.city}`} style={{ textDecoration: 'none' }}>{city.city}</Link>
                   </div>
                   {/* <div><span className="fw-bold h3">{city.city}</span></div> */}
                 </ListGroup.Item>

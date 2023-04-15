@@ -5,7 +5,7 @@ import Home from './pages/home';
 
 import Weather from './pages/Weather';
 
-import Concerts from './pages/concerts2';
+import Concerts from './pages/concerts';
 
 import News from './pages/news'
 
