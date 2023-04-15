@@ -2,9 +2,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/home';
 
+
 import Weather from './pages/Weather';
 
 import Concerts from './pages/concerts2';
+
+import News from './pages/news'
+
 
 // Import the Navbar, Nav and Container components from Bootstrap for a nice layout
 import Navbar from 'react-bootstrap/Navbar';
@@ -26,8 +30,12 @@ function App() {
       <Routes>
         
         <Route path="/" element={<Home />} />
+
         <Route path="/weather/:city" element={<Weather />} />
         <Route path="/concerts/:city" element={<Concerts />} /> // Adding concerts page path
+
+        <Route path="/news/:city" element={<News />} />
+
       </Routes>
     </>
   );

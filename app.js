@@ -19,9 +19,8 @@ mongoose
 
 var indexRouter = require("./routes/index");
 var citiesRouter = require("./routes/cities");
-
 var weatherRouter = require("./routes/weather");
-
+var newsRouter = require("./routes/news");
 var concertsRouter = require("./routes/concerts");
 
 
@@ -40,9 +39,8 @@ app.use(cors());
 
 app.use("/", indexRouter);
 app.use("/cities", citiesRouter);
-
 app.use("/weather", weatherRouter);
-
+app.use("/news", newsRouter);
 app.use("/concerts", concertsRouter);
 
 
