@@ -4,10 +4,11 @@ const Concert = require('../models/Concert'); // Require the concerts model
 console.log("Inside file"); // log message
 
 /* GET concerts */
-router.get('/', async (req, res, next) => {
+router.get('/:city', async (req, res, next) => {
     console.log("Inside backend"); // log message
-
-        concerts = await Concert.find(); // Query the database for all concerts
+    const city = req.params.city;
+    const concerts = await Concert.findOne({ city: city });
+    
 
 // JSON response to client
     return res.status(200).json({
