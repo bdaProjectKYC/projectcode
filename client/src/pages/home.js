@@ -1,18 +1,17 @@
-import { useEffect, useState } from 'react';
-import Container from 'react-bootstrap/Container';
-import ListGroup from 'react-bootstrap/ListGroup';
-import Image from 'react-bootstrap/Image';
-import http from '../lib/http';
+import { useEffect, useState } from "react";
+import Container from "react-bootstrap/Container";
+import ListGroup from "react-bootstrap/ListGroup";
+import http from "../lib/http";
 // Here we import the new components for the seach bar
-import Form from 'react-bootstrap/Form';
-import FormControl from 'react-bootstrap/FormControl';
+import Form from "react-bootstrap/Form";
+import FormControl from "react-bootstrap/FormControl";
 import { Link } from "react-router-dom";
 
 const Home = () => {
-  const [posts, setCities] = useState([]); 
+  const [cities, setCities] = useState([]);
   useEffect(() => {
     async function fetchData() {
-      const { data } = await http.get('/cities');
+      const { data } = await http.get("/cities");
       setCities(data.data.cities);
     }
     fetchData();
@@ -23,13 +22,13 @@ const Home = () => {
   const searchCity = async (e) => {
     const searchValue = e.target.value;
     const { data } = await http.get(`/cities?search=${searchValue}`);
-    // The subset of posts is added to the state that will trigger a re-render of the UI
-    setCities(data.data.cities); 
+    // The subset of cities is added to the state that will trigger a re-render of the UI
+    setCities(data.data.cities);
   };
-  
+
   return (
     <>
-      <Container className="my-5" style={{ maxWidth: '800px' }}>
+      <Container className="my-5" style={{ maxWidth: "800px" }}>
         <h2 className="text-center">Know Your City</h2>
         Search a city to get details
         <Form>
@@ -42,20 +41,22 @@ const Home = () => {
           />
         </Form>
       </Container>
-      <Container style={{ maxWidth: '800px' }}>
+      <Container style={{ maxWidth: "800px" }}>
         <ListGroup variant="flush" as="ol">
-          {
-            posts.map((city) => {
-              return (
-                <ListGroup.Item key={city._id}> 
-                  <div className="fw-bold h3">
-                    <Link to={`/getData/${city.city}`} style={{ textDecoration: 'none' }}>{city.city}</Link>
-                  </div>
-                  {/* <div><span className="fw-bold h3">{city.city}</span></div> */}
-                </ListGroup.Item>
-              );
-            })
-          }
+          {cities.map((city) => {
+            return (
+              <ListGroup.Item key={city._id}>
+                <div className="fw-bold h3">
+                  <Link
+                    to={`/dashboard/${city.city}`}
+                    style={{ textDecoration: "none" }}
+                  >
+                    {city.city}
+                  </Link>
+                </div>
+              </ListGroup.Item>
+            );
+          })}
         </ListGroup>
       </Container>
     </>
