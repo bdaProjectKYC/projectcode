@@ -1,14 +1,23 @@
-import { useEffect, useState } from 'react';
-import Container from 'react-bootstrap/Container';
-import Table from 'react-bootstrap/Table';
-import http from '../lib/http';
-import { useParams } from 'react-router-dom';
-import { BarChart, Bar, XAxis, YAxis, PieChart, Pie, Tooltip, Cell } from 'recharts';
+import { useEffect, useState } from "react";
+import Container from "react-bootstrap/Container";
+import Table from "react-bootstrap/Table";
+import http from "../lib/http";
+import { useParams } from "react-router-dom";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  PieChart,
+  Pie,
+  Tooltip,
+  Cell,
+} from "recharts";
 
 const Weather = () => {
   const [weather, setWeather] = useState([]);
   const { city } = useParams();
-  
+
   useEffect(() => {
     async function fetchData() {
       const { data } = await http.get(`/weather/${city}`);
@@ -19,31 +28,57 @@ const Weather = () => {
 
   // Define the data for the pie chart
   const data = [
-    { name: 'Max Temp', value: weather.reduce((acc, cur) => acc + cur.maxtemp_c, 0) / weather.length },
-    { name: 'Min Temp', value: weather.reduce((acc, cur) => acc + cur.mintemp_c, 0) / weather.length },
+    {
+      name: "Max Temp",
+      value:
+        weather.reduce((acc, cur) => acc + cur.maxtemp_c, 0) / weather.length,
+    },
+    {
+      name: "Min Temp",
+      value:
+        weather.reduce((acc, cur) => acc + cur.mintemp_c, 0) / weather.length,
+    },
   ];
 
   return (
-    <Container className="my-5" style={{ maxWidth: '800px' }}>
+    <Container className="my-5">
       <h2 className="text-center">{city} Weather</h2>
+      <br></br>
       <div className="d-flex flex-wrap">
         <div className="w-50">
-          <h5>Daily Temperatures (C)</h5>
+          <h5 className="text-center">Daily Temperatures (C)</h5>
           <BarChart width={400} height={300} data={weather}>
             <XAxis dataKey="date" />
             <YAxis />
             <Bar dataKey="maxtemp_c" fill="#8884d8" />
             <Bar dataKey="mintemp_c" fill="#82ca9d" />
             {data.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={index === 0 ? '#8884d8' : '#82ca9d'} />
+              <Cell
+                key={`cell-${index}`}
+                fill={index === 0 ? "#8884d8" : "#82ca9d"}
+              />
             ))}
           </BarChart>
           <div className="d-flex justify-content-center mt-3">
-            <div className="mr-3" style={{ backgroundColor: '#8884d8', width: '20px', height: '20px' }}></div>
+            <div
+              className="mr-3"
+              style={{
+                backgroundColor: "#8884d8",
+                width: "20px",
+                height: "20px",
+              }}
+            ></div>
             <div>Max Temperature (C)</div>
           </div>
           <div className="d-flex justify-content-center">
-            <div className="mr-3" style={{ backgroundColor: '#82ca9d', width: '20px', height: '20px' }}></div>
+            <div
+              className="mr-3"
+              style={{
+                backgroundColor: "#82ca9d",
+                width: "20px",
+                height: "20px",
+              }}
+            ></div>
             <div>Min Temperature (C)</div>
           </div>
         </div>
@@ -60,15 +95,19 @@ const Weather = () => {
               label
             >
               {data.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={index === 0 ? '#8884d8' : '#82ca9d'} />
+                <Cell
+                  key={`cell-${index}`}
+                  fill={index === 0 ? "#8884d8" : "#82ca9d"}
+                />
               ))}
             </Pie>
             <Tooltip />
           </PieChart>
         </div>
       </div>
+      <br></br>
       <div className="w-50">
-        <Table striped bordered hover style={{ width: '270%' }}>
+        <Table striped bordered hover style={{ width: "200%" }}>
           <thead>
             <tr>
               <th>Date</th>
