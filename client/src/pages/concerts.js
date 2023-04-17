@@ -30,7 +30,7 @@ const CityConcerts = () => {
           <Card>
             <Link to={`${data.url}`}>
               <Carousel
-                interval={null}
+                interval={1500}
                 style={{ height: "140px", width: "100%" }}
               >
                 {data.images.map((image, index) => (
@@ -56,7 +56,9 @@ const CityConcerts = () => {
   return (
     <Container className="my-5" style={{ maxWidth: '1200px' }}>
       <h2 className="text-center">{city} Concerts</h2>
-      <Row xs={1} md={5} className="g-4">
+      <br></br>
+      <br></br>
+      <Row xs={1} md={5} className="g-5">
         {renderConcertCards()}
       </Row>
     </Container>
