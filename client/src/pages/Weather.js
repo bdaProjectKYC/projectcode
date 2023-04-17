@@ -30,13 +30,15 @@ const Weather = () => {
   const data = [
     {
       name: "Max Temp",
-      value:
-        weather.reduce((acc, cur) => acc + cur.maxtemp_c, 0) / weather.length,
+      value: Math.round(
+        weather.reduce((acc, cur) => acc + cur.maxtemp_c, 0) / weather.length
+      ),
     },
     {
       name: "Min Temp",
-      value:
-        weather.reduce((acc, cur) => acc + cur.mintemp_c, 0) / weather.length,
+      value: Math.round(
+        weather.reduce((acc, cur) => acc + cur.mintemp_c, 0) / weather.length
+      ),
     },
   ];
 
