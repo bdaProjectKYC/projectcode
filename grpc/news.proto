@@ -1,0 +1,16 @@
+  syntax = "proto3";
+
+service NewsService {
+    rpc GetAnalysis ( News) returns ( NewsResponse) {}
+}
+
+message News {
+    string city = 1;
+    string summary = 2;
+}
+
+message NewsResponse {
+    string city = 1;
+    string summary = 2;
+    string analysis=3;
+}

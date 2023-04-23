@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const News = require('../models/NewsModel');
+const grpc = require('../grpc/grpcClient');
 console.log("Inside news file");
 
 /* GET news stories for a city */
@@ -9,7 +10,11 @@ router.get('/:city', async (req, res, next) => {
    
     const city = req.params.city;
     const news = await News.findOne({ place: city });
-    console.log(news);
+    //console.log(news);
+    for(let i = 0; i< news.articles.length; i++){
+      console.log(news.articles[i].snippet);
+      grpc.makeGrpcCall(city, news.articles[i].snippet);
+    }
     if (!news) {
       return res.status(404).json({
         statusCode: 404,
