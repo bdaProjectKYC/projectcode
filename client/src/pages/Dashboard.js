@@ -8,6 +8,7 @@ import NewsTile from "../components/NewsTile";
 import PlacesTile from "../components/PlacesTile";
 import WeatherTile from "../components/WeatherTile";
 import Container from "react-bootstrap/Container";
+import Card from "react-bootstrap/Card";
 
 const Dashboard = () => {
   const { city } = useParams();
@@ -24,9 +25,8 @@ const Dashboard = () => {
       setConcerts(data.data.concerts.events);
     }
     async function fetchPlacesData() {
-      // const { data } = await http.get(`/placesToVisit/${city}`);
-      // setPlaces(data.data.places);
-      setPlaces(null);
+      const { data } = await http.get(`/placesToVisit/${city}`);
+      setPlaces(data.data.places.places);
     }
     async function fetchNewsData() {
       const { data } = await http.get(`/news/${city}`);
@@ -34,7 +34,7 @@ const Dashboard = () => {
     }
     async function fetchWeatherData() {
       const { data } = await http.get(`/weather/${city}`);
-      setWeather(data.data.weather);
+      setWeather(data.data.weather.forecast);
     }
     fetchConcertsData();
     fetchPlacesData();
@@ -51,24 +51,33 @@ const Dashboard = () => {
         <Row>
           <Col>
             <div>
-              <ConcertTile concerts={concerts} city={city} />
+              <Card>
+                <ConcertTile concerts={concerts} city={city} />
+              </Card>
             </div>
           </Col>
           <Col>
             <div>
-              <NewsTile news={news} city={city} />
+              <Card>
+                <NewsTile news={news} city={city} />
+              </Card>
             </div>
           </Col>
         </Row>
+        <br></br>
         <Row>
           <Col>
             <div>
-              <PlacesTile places={places} city={city} />
+              <Card>
+                <PlacesTile places={places} city={city} />
+              </Card>
             </div>
           </Col>
           <Col>
             <div>
-              <WeatherTile weather={weather} city={city} />
+              <Card>
+                <WeatherTile weather={weather} city={city} />
+              </Card>
             </div>
           </Col>
         </Row>

@@ -1,27 +1,30 @@
 const express = require("express");
 const router = express.Router();
-const Weather = require("../models/weather");
+// Require the PlacesToVisit model
+const Places = require("../models/PlacesToVisit");
 
-/* GET weather data for a city */
+/* GET places to visit for a city */
 router.get("/:city", async (req, res, next) => {
   try {
     const city = req.params.city;
-    const weather = await Weather.findOne({ city: city });
-    if (!weather) {
+    const places = await Places.findOne({ city: city });
+    //const places = await Places.find();
+
+    if (!places) {
       return res.status(404).json({
         statusCode: 404,
-        message: "Weather data not found for the city",
+        message: "Places not found for the city",
       });
     }
     return res.status(200).json({
       statusCode: 200,
-      message: "Fetched weather data for the city",
-      data: { weather },
+      message: "Fetched places to visit data for the city",
+      data: { places },
     });
   } catch (error) {
     return res.status(500).json({
       statusCode: 500,
-      message: "Failed to fetch weather data for the city",
+      message: "Failed to fetch places to visit data for the city",
       error: error.message,
     });
   }

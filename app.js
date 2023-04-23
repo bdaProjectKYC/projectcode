@@ -22,6 +22,7 @@ var citiesRouter = require("./routes/cities");
 var weatherRouter = require("./routes/weather");
 var newsRouter = require("./routes/news");
 var concertsRouter = require("./routes/concerts");
+var placesToVisitRouter = require("./routes/placesToVisit");
 
 
 var app = express();
@@ -42,7 +43,7 @@ app.use("/cities", citiesRouter);
 app.use("/weather", weatherRouter);
 app.use("/news", newsRouter);
 app.use("/concerts", concertsRouter);
-
+app.use("/placesToVisit", placesToVisitRouter);
 
 // // Return the client
 // app.get('/cities*', (_, res) => {
