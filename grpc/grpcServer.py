@@ -1,3 +1,4 @@
+#!/bin/bash
 import grpc
 from concurrent import futures
 #from flair.nn import Classifier
