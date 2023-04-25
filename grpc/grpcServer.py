@@ -1,11 +1,11 @@
 import grpc
 from concurrent import futures
-from flair.nn import Classifier
-from flair.data import Sentence
+#from flair.nn import Classifier
+#from flair.data import Sentence
 import news_pb2_grpc as pb2_grpc
 import news_pb2 as pb2
 # load the model
-tagger = Classifier.load('sentiment')
+#tagger = Classifier.load('sentiment')
 
 
 class NewsServer(pb2_grpc.NewsServiceServicer):
@@ -14,12 +14,13 @@ class NewsServer(pb2_grpc.NewsServiceServicer):
         city = request.city
         summary = request.summary
         print(request)
-        sentence = Sentence(summary)
-        tagger.predict(sentence)
-        analysis=None
-        for label in sentence.get_labels():
-            analysis = label.value
-        result = {'city': city, 'analysis': analysis, 'summary': summary}
+        #sentence = Sentence(summary)
+        #tagger.predict(sentence)
+        #analysis=None
+        #for label in sentence.get_labels():
+        #    analysis = label.value
+        #result = {'city': city, 'analysis': analysis, 'summary': summary}
+        result = {'city': city, 'analysis': "POSITIVE", 'summary': summary}
         return pb2.NewsResponse(**result)
 
 

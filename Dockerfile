@@ -1,7 +1,8 @@
-FROM dirkcgrunwald/flair:latest
-LABEL MAINTAINER="dirk grunwald <grunwald@colorado.edu>"
+FROM ubuntu:bionic
 
-RUN pip3 install pika redis jsonpickle requests
+RUN apt-get update
+RUN apt-get install python3 python3-pip -y
+RUN pip3 install grpcio protobuf==3.19.6
 
 ADD grpc /app/grpc
 
