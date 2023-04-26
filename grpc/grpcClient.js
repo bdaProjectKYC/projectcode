@@ -12,15 +12,6 @@ const packageDefinition = protoLoader.loadSync(PROTO_PATH, options);
 const newsProto = grpc.loadPackageDefinition(packageDefinition);
 const myService = newsProto.NewsService;
 
-//const server = new grpc.Server();
-//server.addService(myService.service, { GetAnalysis: GetAnalysis });
-//server.bindAsync('localhost:50051', grpc.ServerCredentials.createInsecure());
-//server.start();
-//console.log('Server running at http://localhost:50051');
-
-// function GetAnalysis(call, callback) {
-//     callback(null, { city, summary });
-//   }
 
   function makeGrpcCall(city, summary) {
     console.log("sending data for analysis");
