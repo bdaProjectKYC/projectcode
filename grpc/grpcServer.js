@@ -27,17 +27,22 @@ function startGRPCServer() {
 
 }
 function computeAnalysis(request){
-    console.log(request);
-    var analysis = ggenerateAnalysis(request.summary);
+    //console.log(request);
+    var analysisValue = generateAnalysis(request.summary);
+    var analysis;
+    if(analysisValue>0){
+        analysis="POSITIVE";
+    }else if(analysisValue < 0){
+        analysis="NEGATIVE";
+    }else{
+        analysis="NEUTRAL";
+    }
     var response ={
         city : request.city,
         summary : request.summary,
-        analysis: "POSITIVE"
+        analysis: analysis
     }
     return response;
-
-
-
 }
 
 function getAnalysis(call, callback) {
@@ -45,7 +50,7 @@ function getAnalysis(call, callback) {
     callback(null, computeAnalysis(call.request));
  }
 
-  function ggenerateAnalysis(review) {
+  function generateAnalysis(review) {
     const lexedReview = aposToLexForm(review);
     const casedReview = lexedReview.toLowerCase();
     const alphaOnlyReview = casedReview.replace(/[^a-zA-Z\s]+/g, "");
