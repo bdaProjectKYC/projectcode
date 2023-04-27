@@ -6,10 +6,12 @@
   "scripts": {
     "dev": "nodemon ./bin/www",
     "start": "node ./bin/www",
-    "build-client": "cd ./client && yarn build",
+    "build-client": "cd ./client",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "dependencies": {
+    "@grpc/grpc-js": "^1.8.14",
+    "apos-to-lex-form": "^1.0.5",
     "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",
     "debug": "~2.6.9",
@@ -18,6 +20,9 @@
     "jade": "~1.11.0",
     "mongoose": "^7.0.3",
     "morgan": "~1.9.1",
-    "nodemon": "^2.0.22"
+    "natural": "^6.2.0",
+    "nodemon": "^2.0.22",
+    "spelling-corrector": "^3.0.0",
+    "stopword": "^2.0.8"
   }
 }
