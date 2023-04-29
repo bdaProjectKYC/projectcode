@@ -6,6 +6,7 @@ import Concerts from "./pages/concerts";
 import News from "./pages/news";
 import Dashboard from "./pages/Dashboard";
 import PlacesToVisit from './pages/placesToVisit';
+import Metrics from "./pages/metrics";
 // Import the Navbar, Nav and Container components from Bootstrap for a nice layout
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
@@ -26,6 +27,7 @@ function App() {
         <Route path="/news/:city" element={<News />} />
         <Route path="/dashboard/:city" element={<Dashboard />} />
         <Route path="/placesToVisit/:city" element={<PlacesToVisit />} />
+        <Route path="/metrics" element={<Metrics />} />
       </Routes>
     </>
   );

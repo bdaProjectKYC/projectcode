@@ -4,9 +4,9 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const cors = require("cors");
+const client = require('prom-client');
 const mongoose = require("mongoose");
 mongoose
-  //   .connect(process.env.MONGODB_CONNECTION_STRING, {
   .connect(
     "mongodb+srv://shka5709:bdaData123@cluster0.1ng1cvf.mongodb.net/bda_data?retryWrites=true&w=majority",
     {
@@ -23,6 +23,17 @@ var weatherRouter = require("./routes/weather");
 var newsRouter = require("./routes/news");
 var concertsRouter = require("./routes/concerts");
 var placesToVisitRouter = require("./routes/placesToVisit");
+
+// Create a Registry to register the metrics
+const register = new client.Registry();
+
+client.collectDefaultMetrics({
+    app: 'node-application-monitoring-app',
+    prefix: 'node_',
+    timeout: 10000,
+    gcDurationBuckets: [0.001, 0.01, 0.1, 1, 2, 5],
+    register
+});
 
 
 var app = express();
@@ -45,10 +56,11 @@ app.use("/news", newsRouter);
 app.use("/concerts", concertsRouter);
 app.use("/placesToVisit", placesToVisitRouter);
 
-// // Return the client
-// app.get('/cities*', (_, res) => {
-//   res.sendFile(path.join(__dirname, 'public') + '/index.html');
-// });
+
+app.get('/metrics', async (req, res) => {
+  res.setHeader('Content-Type', register.contentType);
+  return res.status(200).send(await register.metrics());
+});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
