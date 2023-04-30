@@ -18,7 +18,7 @@ describe('POST: /placesToVisit route to get PTV data', ()=>{
     })
 
     it('invalid data', (done)=>{            // test case 2 - When data for Boulder is not in database
-        request(app).get('/placesToVisit/Boulder')
+        request(app).get('/placesToVisit/abcd')
             .send()
             .then((res)=>{
                 expect(res.statusCode).to.equal(404);

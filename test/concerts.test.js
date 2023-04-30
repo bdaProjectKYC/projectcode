@@ -18,7 +18,7 @@ describe('POST: /concerts route to get concerts data', ()=>{
     })
 
     it('invalid data', (done)=>{            // test case 2 - When data for Boulder is not in database
-        request(app).get('/concerts/Boulder')
+        request(app).get('/concerts/abcd')
             .send()
             .then((res)=>{
                 expect(res.statusCode).to.equal(404);

@@ -18,7 +18,7 @@ describe('POST: /news route to get news data', ()=>{
     })
 
     it('invalid data', (done)=>{            // test case 2 - When data for Boulder is not in database
-        request(app).get('/weather/Boulder')
+        request(app).get('/weather/abcd')
             .send()
             .then((res)=>{
                 expect(res.statusCode).to.equal(404);
