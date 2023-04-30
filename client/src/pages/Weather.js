@@ -126,7 +126,7 @@ const Weather = () => {
             {weather.map((data, index) => (
               <tr key={index}>
                 <td>{data.date}</td>
-                <td>{data.condition}</td>
+                <td> <img src={data.condition_icon}/> {data.condition}</td>
                 <td>{data.maxtemp_c}</td>
                 <td>{data.mintemp_c}</td>
                 <td>{data.maxtemp_f}</td>
