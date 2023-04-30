@@ -9,13 +9,23 @@ import PlacesToVisit from './pages/placesToVisit';
 // Import the Navbar, Nav and Container components from Bootstrap for a nice layout
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
+import logo from "./components/KYCLogo.png"; // import your logo image
 
 function App() {
   return (
     <>
       <Navbar bg="dark" expand="lg" variant="dark">
         <Container>
-          <Navbar.Brand href="/">Know Your City</Navbar.Brand>
+          <Navbar.Brand href="/">
+            <img
+              src={logo}
+              width="30"
+              height="30"
+              className="d-inline-block align-top"
+              alt="Logo"
+            />
+            Know Your City
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
         </Container>
       </Navbar>
