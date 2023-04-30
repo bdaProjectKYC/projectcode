@@ -7,7 +7,8 @@
     "dev": "nodemon ./bin/www",
     "start": "node ./bin/www",
     "build-client": "cd ./client",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "heroku-postbuild": "cd client && npm install && npm run build",
+    "test": "mocha --recursive --exit --timeout 10000"
   },
   "dependencies": {
     "@grpc/grpc-js": "^1.8.14",
@@ -23,6 +24,11 @@
     "natural": "^6.2.0",
     "nodemon": "^2.0.22",
     "spelling-corrector": "^3.0.0",
-    "stopword": "^2.0.8"
+    "stopword": "^2.0.8",
+    "supertest": "^6.3.3"
+  },
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0"
   }
 }
