@@ -1,6 +1,6 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
-import { Link } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 import ListGroup from "react-bootstrap/ListGroup";
 
 const WeatherTile = (props) => {
@@ -42,10 +42,10 @@ const WeatherTile = (props) => {
           })}
         </div>
       </Card>
-      <Card.Body>
-        <Link to={`/weather/${props.city}`}>
-          <Card.Title class="title">View Weekly Weather Data</Card.Title>
-        </Link>
+      <Card.Body className="d-flex justify-content-center">
+        <Button href={`/concerts/${props.city}`} className="title">
+          View Weekly Weather Data
+        </Button>
       </Card.Body>
     </div>
   );

@@ -1,7 +1,7 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
 import Carousel from "react-bootstrap/Carousel";
-import { Link } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 
 const NewsTile = (props) => {
   return (
@@ -25,10 +25,10 @@ const NewsTile = (props) => {
           })}
         </Carousel>
       </Card>
-      <Card.Body>
-        <Link to={`/news/${props.city}`}>
-          <Card.Title class="title">View all News Articles</Card.Title>
-        </Link>
+      <Card.Body className="d-flex justify-content-center">
+        <Button href={`/concerts/${props.city}`} className="title">
+          View all News Article
+        </Button>
       </Card.Body>
     </div>
   );
