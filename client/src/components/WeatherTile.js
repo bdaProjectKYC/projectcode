@@ -9,7 +9,7 @@ const WeatherTile = (props) => {
       <h1 class="title">Weather</h1>
       <Card>
         <div style={{ height: "250px", width: "100%" }}>
-          {props.weather.slice(-1).map((data, index) => {
+          {props.weather.slice(0,1).map((data, index) => {
             // return (<Card>Condition: {data.condition}</Card>
             // <Card>Max Temperature:{data.maxtemp_f}</Card>)
             return (
