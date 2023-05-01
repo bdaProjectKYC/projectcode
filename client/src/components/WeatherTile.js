@@ -43,7 +43,7 @@ const WeatherTile = (props) => {
         </div>
       </Card>
       <Card.Body className="d-flex justify-content-center">
-        <Button href={`/concerts/${props.city}`} className="title">
+        <Button href={`/Weather/${props.city}`} className="title">
           View Weekly Weather Data
         </Button>
       </Card.Body>

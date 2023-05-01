@@ -28,7 +28,7 @@ const PlacesTile = (props) => {
         </Carousel>
       </Card>
       <Card.Body className="d-flex justify-content-center">
-        <Button href={`/concerts/${props.city}`} className="title">
+        <Button href={`/placesToVisit/${props.city}`} className="title">
           View all Places to Visit
         </Button>
       </Card.Body>

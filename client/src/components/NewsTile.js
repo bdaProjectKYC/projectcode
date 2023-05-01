@@ -26,7 +26,7 @@ const NewsTile = (props) => {
         </Carousel>
       </Card>
       <Card.Body className="d-flex justify-content-center">
-        <Button href={`/concerts/${props.city}`} className="title">
+        <Button href={`/news/${props.city}`} className="title">
           View all News Article
         </Button>
       </Card.Body>
