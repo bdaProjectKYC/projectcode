@@ -50,15 +50,15 @@ const Dashboard = () => {
       <Container>
         <Row>
           <Col>
-            <div>
-              <Card>
+            <div style={{ width: "95%", height: "100%" }}>
+              <Card style={{ width: "95%", height: "100%" }}>
                 <ConcertTile concerts={concerts} city={city} />
               </Card>
             </div>
           </Col>
           <Col>
-            <div>
-              <Card>
+            <div style={{ width: "95%", height: "100%" }}>
+              <Card style={{ width: "95%", height: "100%" }}>
                 <NewsTile news={news} city={city} />
               </Card>
             </div>
@@ -67,15 +67,15 @@ const Dashboard = () => {
         <br></br>
         <Row>
           <Col>
-            <div>
-              <Card>
+            <div style={{ width: "95%", height: "100%" }}>
+              <Card style={{ width: "95%", height: "100%" }}>
                 <PlacesTile places={places} city={city} />
               </Card>
             </div>
           </Col>
           <Col>
-            <div>
-              <Card>
+            <div style={{ width: "95%", height: "100%" }}>
+              <Card style={{ width: "95%", height: "100%" }}>
                 <WeatherTile weather={weather} city={city} />
               </Card>
             </div>
