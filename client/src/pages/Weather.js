@@ -114,10 +114,10 @@ const Weather = () => {
             <tr>
               <th>Date</th>
               <th>Condition</th>
-              <th>Max Temp (C)</th>
-              <th>Min Temp (C)</th>
-              <th>Max Temp (F)</th>
-              <th>Min Temp (F)</th>
+              <th>Max Temp (&deg;C)</th>
+              <th>Min Temp (&deg;C)</th>
+              <th>Max Temp (&deg;F)</th>
+              <th>Min Temp (&deg;F)</th>
               <th>Max Wind (KPH)</th>
               <th>Max Wind (MPH)</th>
             </tr>
